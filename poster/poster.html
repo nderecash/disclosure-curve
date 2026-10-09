@@ -1,0 +1,142 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* A0 portrait, 841 x 1189 mm. Three-zone poster: claim, evidence, consequence. */
+:root{
+  --ink:#15202b; --mut:#5d6b7a; --line:#c8d0d8; --paper:#ffffff; --tint:#f1f4f6;
+  --accent:#4E1A78;          /* swap this one value for the exact TUNI purple */
+  --warn:#b0353a; --good:#3f8f73;
+  --disp:"Source Serif 4",Georgia,serif;
+  --body:"Source Sans 3",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",monospace;
+}
+@page{size:841mm 1189mm;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--body)}
+.sheet{width:841mm;height:1189mm;padding:22mm 22mm 15mm;display:flex;flex-direction:column;gap:6mm}
+
+header{border-bottom:2mm solid var(--accent);padding-bottom:5mm}
+h1{font-family:var(--disp);font-size:92pt;line-height:.98;margin:0 0 3mm;letter-spacing:-.015em;font-weight:700}
+.sub{font-size:33pt;color:var(--mut);margin:0 0 5mm;font-weight:400;line-height:1.15}
+.byline{display:flex;justify-content:space-between;align-items:baseline;gap:10mm;font-size:19pt;color:var(--mut)}
+.byline b{color:var(--ink);font-weight:600}
+
+.claim{background:var(--tint);border-left:4mm solid var(--warn);padding:6mm 8mm}
+.claim p{margin:0;font-family:var(--disp);font-size:41pt;line-height:1.16;font-weight:600}
+.claim em{color:var(--warn);font-style:normal}
+
+.cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8mm}
+.cols2{display:grid;grid-template-columns:1.45fr 1fr;gap:8mm}
+h2{font-family:var(--body);font-size:21pt;letter-spacing:.09em;text-transform:uppercase;
+   color:var(--accent);margin:0 0 4mm;font-weight:700}
+p{font-size:20pt;line-height:1.4;margin:0 0 3mm}
+p:last-child{margin-bottom:0}
+.fig{border:.5mm solid var(--line);background:#fff}
+.fig img{display:block;width:100%}
+.cap{font-size:17pt;color:var(--mut);line-height:1.3;padding:3mm 4mm 0}
+.num{font-family:var(--mono);font-weight:500}
+.big{font-family:var(--mono);font-size:42pt;color:var(--warn);line-height:1;display:block;margin-bottom:2mm}
+.good{color:var(--good)}
+ul{margin:0;padding-left:7mm}
+li{font-size:19.5pt;line-height:1.36;margin-bottom:2.5mm}
+li:last-child{margin-bottom:0}
+.rule{border-top:.5mm solid var(--line);padding-top:6mm}
+footer{margin-top:auto;border-top:.7mm solid var(--line);padding-top:5mm;
+  display:grid;grid-template-columns:1.25fr 1.25fr .9fr;gap:8mm;font-size:14pt;line-height:1.34;color:var(--mut)}
+footer h3{font-size:15pt;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin:0 0 3mm;font-weight:700}
+footer p{font-size:14.5pt;line-height:1.34;margin:0 0 2mm}
+.qr{display:flex;gap:7mm;align-items:flex-start}
+.qrbox{width:29mm;height:29mm;border:.5mm solid var(--line);display:flex;align-items:center;
+  justify-content:center;font-size:11pt;color:var(--mut);text-align:center;line-height:1.2;flex:none}
+</style></head><body>
+<div class="sheet">
+
+<header>
+  <h1>Minimum Viable Disclosure</h1>
+  <p class="sub">Measuring the point where more context stops helping</p>
+  <div class="byline">
+    <span><b>Moses Nderemani</b> &nbsp;·&nbsp; Pervasive Interaction Research Group, Tampere University</span>
+    <span>SDLCAI 2026 &nbsp;·&nbsp; Marsio, Aalto University &nbsp;·&nbsp; 13 October</span>
+  </div>
+</header>
+
+<div class="claim">
+  <p>The data-minimisation strategy that scores best on the standard metric retrieves <em>zero</em> uncommon items. It wins by abandoning the person.</p>
+</div>
+
+<div class="cols3">
+  <div>
+    <h2>The question</h2>
+    <p>Personalised systems accumulate data, most of it observed rather than volunteered. GDPR Article 5(1)(c) requires that it be limited to what is necessary. How little is that?</p>
+  </div>
+  <div>
+    <h2>What was known</h2>
+    <p>Biega et al. (SIGIR 2020) formalised this as performance-based data minimisation, compared seven ways of choosing what to keep, and found the accuracy cost modest but unevenly spread across people.</p>
+  </div>
+  <div>
+    <h2>What is added here</h2>
+    <p>Quality and re-identification measured together rather than separately, on two datasets, with a popularity control that the earlier framing had no reason to run.</p>
+  </div>
+</div>
+
+<div class="fig">
+  <img src="p1.svg" alt="Two panels. Standard Recall@20 against identification, and the same conditions scored on uncommon items only.">
+  <p class="cap">MovieLens 1M, 1,012 people, 3 seeds. <b>Left:</b> keeping a person's most popular items dominates every alternative at every profile size, and identifies far fewer people. <b>Right:</b> the same predictions scored only on items below the 80th popularity percentile. Most-popular retrieves <span class="num">0.0000</span> at 8 and at 13 items disclosed.</p>
+</div>
+
+<div class="cols3">
+  <div>
+    <span class="big">0.0000</span>
+    <p>Uncommon items found by the best-scoring strategy. Told only about someone's popular items, the model returns something close to a bestseller list. Scored against targets that are themselves mostly popular, that looks like success.</p>
+  </div>
+  <div>
+    <span class="big">&minus;0.284</span>
+    <p>Rank correlation between the standard metric and the uncommon-item metric across 45 strategy and size combinations (p&nbsp;=&nbsp;0.058, short of significance). The direct comparison carries the claim: <span class="num">0.0000</span> against <span class="num">0.0221</span> at 13 items.</p>
+  </div>
+  <div>
+    <span class="big">90.3%</span>
+    <p>Of people identified at rank 1 from 8 disclosed films, matched against all 1,012 profiles, without timestamps. On Frappe, 2 phone apps identify 62.1%. Informative and identifying are the same property.</p>
+  </div>
+</div>
+
+<div class="fig">
+  <img src="p2.svg" alt="Left, disclosure against context scored the same way. Right, identification rising with disclosure on both datasets.">
+  <p class="cap">Every condition restricted the same way, so each gets twenty slots for uncommon items. <b>A single disclosed item (<span class="num">0.0581</span>) beats group context (<span class="num">0.0476</span>)</b>, which in turn beats the popularity default (<span class="num">0.0408</span>). An earlier version of this analysis compared restricted context against unrestricted disclosure and reached the opposite conclusion; the second dataset caught it.</p>
+</div>
+
+<div class="cols2">
+  <div class="fig" style="border:none">
+    <img src="p3.svg" alt="Bar chart of gain over the popularity default for five context variables in Frappe.">
+    <p class="cap" style="padding-left:0">Frappe, 957 users, 4,082 apps; cohort 87 users and 235 user-context cells. Home or work is 79% unknown in the data, and gives nothing.</p>
+  </div>
+  <div>
+    <h2>What to build</h2>
+    <ul>
+      <li><b>Use context to replace the default, not the profile.</b> It is a strictly better version of what a system shows when it knows nothing, at <span class="num">3%</span> identification cost or less.</li>
+      <li><b>Reserve capacity for the uncommon.</b> The largest single effect here was refusing to fill a list with popular items, which people already have access to.</li>
+      <li><b>Choose the cue empirically.</b> The spread between context variables (&minus;2% to +65%) is wider than the gap between having context and not having it.</li>
+      <li><b>Treat a missing cue as missing.</b> A signal that is usually absent is worse than none, because the system falls back silently while appearing to adapt.</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <h3>Method</h3>
+    <p>Ratings of 4+ treated as positives. Iterative filtering to 20 interactions minimum. <b>Users split, not interactions</b>, so test users never appear in training. EASE, so the profile enters at inference and no retraining is needed per profile size. Fixed cohort with pool ≥ 55, so the same people contribute at every size. The whole pool is excluded from the candidate set at every size. Three seeds, 2,000-sample bootstrap over users.</p>
+  </div>
+  <div>
+    <h3>Limits</h3>
+    <p>The cohort requires 55+ items and over-represents heavy users, who are more identifiable; read identification as an upper bound. MovieLens timestamps record rating time, not viewing time, so no temporal claim is made. The Frappe cohort is 87 users, and only its agreement in direction with MovieLens carries weight. Re-identification is rank matching inside a closed set, not a privacy guarantee. Utility is offline accuracy, not whether anyone was better served.</p>
+  </div>
+  <div>
+    <h3>References &amp; code</h3>
+    <p>Biega et al., SIGIR '20, 399–408 · Narayanan &amp; Shmatikov, IEEE S&amp;P '08 · Steck, WWW '19 · Baltrunas et al., arXiv:1505.03014 · Hidasi &amp; Czapp, RecSys '23</p>
+    <div class="qr">
+      <div class="qrbox">code,<br>data,<br>paper</div>
+      <div class="qrbox">30-second<br>question<br>at the board</div>
+    </div>
+  </div>
+</footer>
+
+</div></body></html>

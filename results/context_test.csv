@@ -1,0 +1,12 @@
+condition,k,std_recall,tail_recall
+"global popularity (no disclosure, no context)",0,0.19605026064929823,0.0
+"group popularity (context only, no disclosure)",0,0.1941082671366862,0.0
+group popularity restricted to tail items,0,0.029280539880469213,0.04759496277035268
+"individual disclosure, 1 random items",1,0.1007223408051245,0.02425065702821874
+"  + group context, 1 items",1,0.16857080907045568,0.00701399893802303
+"individual disclosure, 3 random items",3,0.12675060923058634,0.021415937389801454
+"  + group context, 3 items",3,0.1820217545967142,0.0038593596825293825
+"individual disclosure, 8 random items",8,0.16616638108679432,0.02507523522911934
+"  + group context, 8 items",8,0.20546886608814524,0.0025437372366069622
+"individual disclosure, 13 random items",13,0.18470026836058603,0.021630867950093127
+"  + group context, 13 items",13,0.21871865164830234,0.0027558734870708947

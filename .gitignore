@@ -1,0 +1,15 @@
+# datasets are fetched, never committed (see data/README.md)
+data/*
+!data/README.md
+
+# generated inspection images, not deliverables
+figures/chk*.png
+figures/*.png
+poster/preview*.png
+poster/pdfcheck*.png
+poster/crop*.png
+
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

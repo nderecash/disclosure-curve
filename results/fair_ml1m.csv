@@ -1,0 +1,14 @@
+condition,tail_recall_at20
+global popularity (no disclosure),0.040824250446830475
+group context (no disclosure),0.04759496277035268
+"individual disclosure, 1 items",0.0580517533083703
+"individual disclosure, 3 items",0.06820012811016958
+"individual disclosure, 5 items",0.08536154110016332
+"individual disclosure, 8 items",0.09543132919713575
+"individual disclosure, 13 items",0.10638161444018127
+"individual disclosure, 21 items",0.13193814145104032
+"individual disclosure, 34 items",0.15049398043566573
+"individual disclosure, 55 items",0.1775013592369885
+full history,0.23188098107005536
+"UNFAIR: group context, tail-restricted",0.04759496277035268
+"UNFAIR: disclosure 8, NOT restricted",0.022330015327677206
