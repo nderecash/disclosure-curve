@@ -33,5 +33,5 @@ cols=['#C44E52' if x<0 else '#55A868' for x in g]
 ax[2].barh(v,g,color=cols); ax[2].axvline(0,c='k',lw=.8)
 ax[2].set_xlabel('% gain over popularity default (tail)')
 ax[2].set_title('(c) context variables are not equal (Frappe)',fontsize=9.5,loc='left')
-fig.tight_layout(); fig.savefig('figures/guide.png',dpi=160); fig.savefig('figures/guide.pdf')
+fig.tight_layout(); fig.savefig('figures/guide_fig.png',dpi=160); fig.savefig('figures/guide_fig.pdf')
 print("ok")
