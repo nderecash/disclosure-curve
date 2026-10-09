@@ -122,7 +122,7 @@ figures/    vector figures (SVG for the poster, PDF for the paper)
 paper/      paper.{md,pdf}   7pp short paper, Mindtrek format
             guide.{md,pdf}   4pp two-dataset design guide
             design.{md,pdf}  6pp AAC / ability-based-design research design
-poster/     poster.html + poster-A0.pdf (841 × 1189 mm, 1 page)
+poster/     poster.html + poster-A0.pdf (841 x 1189 mm, 1 page) + qr.svg
 data/       empty; download_data.sh fills it
 ```
 
